@@ -11,6 +11,7 @@ namespace EfSamurai.Data
         public DbSet<Haircut> Haircuts { get; set; }
         public DbSet<Quote> Quotes { get; set; }
         public DbSet<QuoteType> QuoteTypes { get; set; }
+        public DbSet<Battle> Battles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,6 +25,15 @@ namespace EfSamurai.Data
                 .HasOne(p => p.SecretIdentity)
                 .WithOne(i => i.Samurai)
                 .HasForeignKey<SecretIdentity>(s => s.SamuraiForeignKey);
+
+            modelBuilder.Entity<SamuraiBattle>().
+                HasKey(x => new { x.SamuraId, x.BattleId });
+            //base.OnModelCreating;
         }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+
+        //}
     }
 }
