@@ -24,12 +24,12 @@ namespace EfSamurai.Data
             modelBuilder.Entity<Samurai>()
                 .HasOne(p => p.SecretIdentity)
                 .WithOne(i => i.Samurai)
-                .HasForeignKey<SecretIdentity>(s => s.SamuraiForeignKey);
+                .HasForeignKey<SecretIdentity>(s => s.SamuraiId);
 
             modelBuilder.Entity<Battle>()
                 .HasOne(p => p.BattleLog)
                 .WithOne(i => i.Battle)
-                .HasForeignKey<BattleLog>(b => b.BattleForeignKey);
+                .HasForeignKey<BattleLog>(b => b.BattleId);
 
             modelBuilder.Entity<SamuraiBattle>().
                 HasKey(x => new { x.SamuraiId, x.BattleId });

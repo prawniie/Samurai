@@ -10,6 +10,6 @@ namespace EfSamurai.Domain
         public string Name { get; set; }
 
         public Samurai Samurai { get; set; }
-        public int SamuraiForeignKey { get; set; }
+        public int SamuraiId { get; set; }
     }
 }

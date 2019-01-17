@@ -4,14 +4,16 @@ using EfSamurai.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EfSamurai.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    partial class SamuraiContextModelSnapshot : ModelSnapshot
+    [Migration("20190117145934_ChangedForeignKeyToId")]
+    partial class ChangedForeignKeyToId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,13 +35,9 @@ namespace EfSamurai.Data.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("SamuraiId");
-
                     b.Property<DateTime>("StartDate");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SamuraiId");
 
                     b.ToTable("Battles");
                 });
@@ -176,13 +174,6 @@ namespace EfSamurai.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("SecretIdentity");
-                });
-
-            modelBuilder.Entity("EfSamurai.Domain.Battle", b =>
-                {
-                    b.HasOne("EfSamurai.Domain.Samurai")
-                        .WithMany("Battles")
-                        .HasForeignKey("SamuraiId");
                 });
 
             modelBuilder.Entity("EfSamurai.Domain.BattleEvent", b =>
