@@ -6,7 +6,7 @@ namespace EfSamurai.Domain
 {
     public class SamuraiBattle
     {
-        public int SamuraId { get; set; }
+        public int SamuraiId { get; set; }
         public Samurai Samurai { get; set; }
 
         public int BattleId { get; set; }

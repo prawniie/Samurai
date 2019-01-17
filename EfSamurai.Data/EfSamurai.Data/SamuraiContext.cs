@@ -27,7 +27,7 @@ namespace EfSamurai.Data
                 .HasForeignKey<SecretIdentity>(s => s.SamuraiForeignKey);
 
             modelBuilder.Entity<SamuraiBattle>().
-                HasKey(x => new { x.SamuraId, x.BattleId });
+                HasKey(x => new { x.SamuraiId, x.BattleId });
             //base.OnModelCreating;
         }
 
