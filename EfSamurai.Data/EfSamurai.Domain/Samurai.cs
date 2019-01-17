@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EfSamurai.Domain
 {
@@ -6,5 +7,7 @@ namespace EfSamurai.Domain
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public List<Quote> Quotes { get; set; }
     }
 }
