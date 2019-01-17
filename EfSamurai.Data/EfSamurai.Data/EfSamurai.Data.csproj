@@ -12,4 +12,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EfSamurai.Domain\EfSamurai.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
