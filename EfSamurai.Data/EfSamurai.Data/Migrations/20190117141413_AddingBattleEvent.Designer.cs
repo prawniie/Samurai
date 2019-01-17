@@ -4,14 +4,16 @@ using EfSamurai.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EfSamurai.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    partial class SamuraiContextModelSnapshot : ModelSnapshot
+    [Migration("20190117141413_AddingBattleEvent")]
+    partial class AddingBattleEvent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,9 +52,9 @@ namespace EfSamurai.Data.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Summary");
+                    b.Property<int>("Order");
 
-                    b.Property<DateTime>("TimeOfEvent");
+                    b.Property<string>("Summary");
 
                     b.HasKey("Id");
 

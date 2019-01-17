@@ -26,6 +26,11 @@ namespace EfSamurai.Data
                 .WithOne(i => i.Samurai)
                 .HasForeignKey<SecretIdentity>(s => s.SamuraiForeignKey);
 
+            modelBuilder.Entity<Battle>()
+                .HasOne(p => p.BattleLog)
+                .WithOne(i => i.Battle)
+                .HasForeignKey<BattleLog>(b => b.BattleForeignKey);
+
             modelBuilder.Entity<SamuraiBattle>().
                 HasKey(x => new { x.SamuraiId, x.BattleId });
             //base.OnModelCreating;
