@@ -7,6 +7,8 @@ namespace EfSamurai.Domain
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public Haircut Haircut { get; set; }
+        public SecretIdentity SecretIdentity { get; set; }
 
         public List<Quote> Quotes { get; set; }
     }

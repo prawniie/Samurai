@@ -4,14 +4,16 @@ using EfSamurai.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EfSamurai.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    partial class SamuraiContextModelSnapshot : ModelSnapshot
+    [Migration("20190117133246_AddingHaircut")]
+    partial class AddingHaircut
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,7 @@ namespace EfSamurai.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Haircuts");
+                    b.ToTable("Haircut");
                 });
 
             modelBuilder.Entity("EfSamurai.Domain.Quote", b =>
@@ -48,7 +50,7 @@ namespace EfSamurai.Data.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Quotes");
+                    b.ToTable("Quote");
                 });
 
             modelBuilder.Entity("EfSamurai.Domain.QuoteType", b =>
@@ -61,7 +63,7 @@ namespace EfSamurai.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("QuoteTypes");
+                    b.ToTable("QuoteType");
                 });
 
             modelBuilder.Entity("EfSamurai.Domain.Samurai", b =>
@@ -81,24 +83,6 @@ namespace EfSamurai.Data.Migrations
                     b.ToTable("Samurais");
                 });
 
-            modelBuilder.Entity("EfSamurai.Domain.SecretIdentity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name");
-
-                    b.Property<int>("SamuraiForeignKey");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SamuraiForeignKey")
-                        .IsUnique();
-
-                    b.ToTable("SecretIdentity");
-                });
-
             modelBuilder.Entity("EfSamurai.Domain.Quote", b =>
                 {
                     b.HasOne("EfSamurai.Domain.Samurai", "Samurai")
@@ -115,14 +99,6 @@ namespace EfSamurai.Data.Migrations
                     b.HasOne("EfSamurai.Domain.Haircut", "Haircut")
                         .WithMany()
                         .HasForeignKey("HaircutId");
-                });
-
-            modelBuilder.Entity("EfSamurai.Domain.SecretIdentity", b =>
-                {
-                    b.HasOne("EfSamurai.Domain.Samurai", "Samurai")
-                        .WithOne("SecretIdentity")
-                        .HasForeignKey("EfSamurai.Domain.SecretIdentity", "SamuraiForeignKey")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
