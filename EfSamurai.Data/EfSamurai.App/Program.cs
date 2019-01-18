@@ -15,7 +15,23 @@ namespace EfSamurai.App
             //AddOneSamurai();
             //AddSomeSamurais();
             //AddSomeBattles();
-            AddOneSamuraiWithRelatedData();
+            //AddOneSamuraiWithRelatedData();
+
+            ListAllSamuraiNames();
+        }
+
+        private static void ListAllSamuraiNames()
+        {
+            var dataAccess = new DataAccess();
+
+            List<Samurai> samurais = dataAccess.GetAllSamurais();
+
+            Console.WriteLine("SAMURAIS");
+            foreach (var samurai in samurais)
+            {
+                Console.WriteLine(samurai.Name);
+            }
+            Console.WriteLine();
         }
 
         private static void AddOneSamuraiWithRelatedData()
