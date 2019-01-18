@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EfSamurai.Data\EfSamurai.Data.csproj" />
     <ProjectReference Include="..\EfSamurai.Domain\EfSamurai.Domain.csproj" />
   </ItemGroup>

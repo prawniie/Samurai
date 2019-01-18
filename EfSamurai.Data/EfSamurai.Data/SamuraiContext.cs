@@ -12,6 +12,7 @@ namespace EfSamurai.Data
         public DbSet<Quote> Quotes { get; set; }
         public DbSet<QuoteType> QuoteTypes { get; set; }
         public DbSet<Battle> Battles { get; set; }
+        public DbSet<SamuraiBattle> SamuraiBattles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
