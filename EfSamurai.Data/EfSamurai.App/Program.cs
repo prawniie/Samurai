@@ -11,21 +11,11 @@ namespace EfSamurai.App
     {
         static void Main(string[] args)
         {
-            //RecreateDatabase();
             //ClearDatabase();
             //AddOneSamurai();
             //AddSomeSamurais();
             //AddSomeBattles();
             AddOneSamuraiWithRelatedData();
-        }
-
-        private static void RecreateDatabase()
-        {
-            using (var context = new SamuraiContext())
-            {
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
-            }
         }
 
         private static void AddOneSamuraiWithRelatedData()
@@ -154,6 +144,21 @@ namespace EfSamurai.App
             foreach (var battle in context.Battles)
             {
                 context.Remove(battle);
+            }
+
+            foreach (var samuraiBattle in context.SamuraiBattles)
+            {
+                context.Remove(samuraiBattle);
+            }
+
+            foreach (var battleEvent in context.BattleEvents)
+            {
+                context.Remove(battleEvent);
+            }
+
+            foreach (var battlelog in context.BattleLogs)
+            {
+                context.Remove(battlelog);
             }
 
             context.SaveChanges();
