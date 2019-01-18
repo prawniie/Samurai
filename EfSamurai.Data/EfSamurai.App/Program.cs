@@ -11,7 +11,7 @@ namespace EfSamurai.App
     {
         static void Main(string[] args)
         {
-            //ClearDatabase();
+            ClearDatabase();
             //AddOneSamurai();
             //AddSomeSamurais();
             //AddSomeBattles();
@@ -19,6 +19,58 @@ namespace EfSamurai.App
 
             ListAllSamuraiNames();
             ListAllSamuraiNames_OrderByName();
+            ListAllSamuraiNames_OrderByIdDescending();
+
+            QuoteType quoteType = new QuoteType { Name = "Lame" };
+            ListAllQuotesOfType(quoteType);
+            ListAllQuotesOfType_WithSamurai(quoteType);
+
+        }
+
+        private static void ListAllQuotesOfType_WithSamurai(QuoteType quoteType)
+        {
+            var dataAccess = new DataAccess();
+
+            List<Quote> quotes = dataAccess.GetAllQuotesOfType_WithSamurai(quoteType);
+
+            Console.WriteLine("QUOTES IN CATEGORY: " + quoteType.Name);
+
+            foreach (var quote in quotes)
+            {
+                Console.WriteLine($"'{quote.Text}' is a quote by {quote.Samurai.Name}");
+            }
+
+            Console.WriteLine();
+        }
+
+        private static void ListAllQuotesOfType(QuoteType quoteType)
+        {
+            var dataAccess = new DataAccess();
+
+            List<Quote> quotes = dataAccess.GetAllQuotesOfType(quoteType);
+
+            Console.WriteLine("QUOTES IN CATEGORY: " + quoteType.Name);
+
+            foreach (var quote in quotes)
+            {
+                Console.WriteLine(quote.Text);
+            }
+
+            Console.WriteLine();
+        }
+
+        private static void ListAllSamuraiNames_OrderByIdDescending()
+        {
+            var dataAccess = new DataAccess();
+
+            List<Samurai> samurais = dataAccess.GetAllSamurais_OrderedByIdDescending();
+
+            Console.WriteLine("SAMURAIS ORDERED BY ID DESCENDING");
+            foreach (var samurai in samurais)
+            {
+                Console.WriteLine(samurai.Id.ToString().PadRight(5) + samurai.Name);
+            }
+            Console.WriteLine();
         }
 
         private static void ListAllSamuraiNames_OrderByName()
@@ -150,48 +202,17 @@ namespace EfSamurai.App
 
         private static void ClearDatabase() //Fråga: hur tänka när man ska veta vilka man behöver ta bort?
         {
-            //MÅSTE TA HAND OM CONSTRAINT FÖR ATT TA BORT 
+            //KOLLA VAD MAN SKA TA BORT CONSTRAINT FÖR ATT TA BORT 
             var context = new SamuraiContext();
 
-            foreach (var samurai in context.Samurais)
-            {
-                context.Remove(samurai);
-            }
-
-            foreach (var haircut in context.Haircuts)
-            {
-                context.Remove(haircut);
-            }
-
-            foreach (var quote in context.Quotes)
-            {
-                context.Remove(quote);
-            }
-
-            foreach (var quoteType in context.QuoteTypes)
-            {
-                context.Remove(quoteType);
-            }
-
-            foreach (var battle in context.Battles)
-            {
-                context.Remove(battle);
-            }
-
-            foreach (var samuraiBattle in context.SamuraiBattles)
-            {
-                context.Remove(samuraiBattle);
-            }
-
-            foreach (var battleEvent in context.BattleEvents)
-            {
-                context.Remove(battleEvent);
-            }
-
-            foreach (var battlelog in context.BattleLogs)
-            {
-                context.Remove(battlelog);
-            }
+            context.RemoveRange(context.Samurais);
+            context.RemoveRange(context.Haircuts);
+            context.RemoveRange(context.Quotes);
+            context.RemoveRange(context.QuoteTypes);
+            context.RemoveRange(context.Battles);
+            context.RemoveRange(context.SamuraiBattles);
+            context.RemoveRange(context.BattleLogs);
+            context.RemoveRange(context.BattleEvents);
 
             context.SaveChanges();
         }

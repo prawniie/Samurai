@@ -26,5 +26,20 @@ namespace EfSamurai.Data
             return _context.Samurais.OrderBy(s => s.Name).ToList();
 
         }
+
+        public List<Samurai> GetAllSamurais_OrderedByIdDescending()
+        {
+            return _context.Samurais.OrderByDescending(s => s.Id).ToList();
+        }
+
+        public List<Quote> GetAllQuotesOfType(QuoteType quoteType)
+        {
+            return _context.Quotes.Where(q => q.Type.Name == quoteType.Name).ToList();
+        }
+
+        public List<Quote> GetAllQuotesOfType_WithSamurai(QuoteType quoteType)
+        {
+            return _context.Quotes.Where(q => q.Type.Name == quoteType.Name).Include(s => s.Samurai).ToList();
+        }
     }
 }
