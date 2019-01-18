@@ -20,5 +20,11 @@ namespace EfSamurai.Data
         {
             return _context.Samurais.ToList();
         }
+
+        public List<Samurai> GetAllSamurais_OrderedByName()
+        {
+            return _context.Samurais.OrderBy(s => s.Name).ToList();
+
+        }
     }
 }

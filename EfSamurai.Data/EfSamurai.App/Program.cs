@@ -18,6 +18,22 @@ namespace EfSamurai.App
             //AddOneSamuraiWithRelatedData();
 
             ListAllSamuraiNames();
+            ListAllSamuraiNames_OrderByName();
+        }
+
+        private static void ListAllSamuraiNames_OrderByName()
+        {
+            var dataAccess = new DataAccess();
+
+            List<Samurai> samurais = dataAccess.GetAllSamurais_OrderedByName();
+
+            Console.WriteLine("SAMURAIS ORDERED BY NAME");
+            foreach (var samurai in samurais)
+            {
+                Console.WriteLine(samurai.Name);
+            }
+            Console.WriteLine();
+
         }
 
         private static void ListAllSamuraiNames()
@@ -39,10 +55,10 @@ namespace EfSamurai.App
             var context = new SamuraiContext();
 
             var haircut = new Haircut { Name = "Short" };
-            var secretIdentity = new SecretIdentity { Name = "Ash Ketchum"};
+            var secretIdentity = new SecretIdentity { Name = "Harry Potter"};
 
             var quoteType = new QuoteType { Name = "Lame" };
-            var listOfQuotes = new List<Quote> { new Quote { Text = "Carpe diem", Type = quoteType }, new Quote { Text = "YOLO", Type = quoteType } };
+            var listOfQuotes = new List<Quote> { new Quote { Text = "Friends come first", Type = quoteType }, new Quote { Text = "I'm a wizard", Type = quoteType } };
 
             var battleEvents = new List<BattleEvent>
             {
@@ -70,7 +86,7 @@ namespace EfSamurai.App
 
             var samurai = new Samurai
             {
-                Name = "Brook",
+                Name = "Arnold",
                 Haircut = haircut,
                 SecretIdentity = secretIdentity,
                 Quotes = listOfQuotes,
